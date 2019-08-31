@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录页面</title>
+		<script src="/web/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="/login" method="post">
+			<input type="text" name="userName" id="userName" placeholder="用户姓名" />
+			<br>
+			<input type="password" name="userPassword" id="userPassword" placeholder="用户密码" />
+			
+			<input type="button" value="登录" id="loginBt" />
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$("#loginBt").click(function(){
+			$.ajax({
+				url:'/login',
+				data:{
+					userName:$("#userName").val() || 'xx',
+					userPassword:$("#userPassword").val() || "xxx",
+				},
+				type:'post',
+				dataType:'json',
+				success:function(res){
+					if(res.ok){
+						alert("登陆成功");
+						window.location = '/';
+					}else{
+						alert("不正确");
+					}
+				},
+				error:function(a,b){
+					console.info(a);
+				}
+			})
+		});
+	});
+</script>
