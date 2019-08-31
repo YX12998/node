@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="web/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="userId" id="userId" placeholder="用户id" />
+			<input type="text" name="userName" id="userName" placeholder="用户姓名" />
+			<input type="button" id="getUserInfo" value="查询" />
+			<input type="button" id="updataUser" value="修改" />
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	$("#getUserInfo").click(function(){
+		// 通过id查用户姓名
+		
+		var userId = parseInt($("#userId").val());
+		if(isNaN(userId)){
+			alert("请输入数字");
+			return;
+		}
+		
+		$.ajax({
+			url:"/getUserInfo",
+			type:'get',
+			dataType:'json',
+			data:{
+				"userId":userId
+			},
+			success:function(res){
+				console.info(res);
+				$("#userName").val(res);
+			},
+			error:function(a,b){
+				console.info(a);
+			}
+		});
+	});
+	
+	$("#updataUser").click(function(){
+		
+		var userId = parseInt($("#userId").val());
+		var userName = $("#userName").val();
+		// if(isNaN(userId)){
+		// 	alert("请输入数字");
+		// 	return;
+		// }
+		
+		$.ajax({
+			url:"/updataUser",
+			type:'post',
+			timeout:1000,
+			dataType:'json',
+			data:{
+				"userId":userId,
+				"userName":userName
+			},
+			success:function(data){
+				console.info(data);
+				alert("修改成功");
+			},
+			error:function(a,b){
+				console.info(a);
+			}
+		});
+	});
+</script>

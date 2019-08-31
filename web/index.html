@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="/" method="get">
+			<div>查找</div>
+			输入id: <input type="text" name="id" value="" />
+			输入name: <input type="text" name="name" value="" />
+			<br><br>
+			<input type="submit" value="提交" />
+		</form>
+		<form action="/" method="post">
+			<div>修改</div>
+			输入id: <input type="text" name="id" value="" />
+			<br><br>
+			新的姓名: <input type="text" name="name" value="" />
+			<br><br>
+			<input type="submit" value="修改" />
+		</form>
+		
+		选择一个文件上传: <br />
+		<form action="/file_upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="image" size="50" />
+		<br />
+		<input type="submit" value="上传文件" />
+		</form>
+		<br><br>
+		作业4和作业5
+		<hr>
+		<form>
+			<input type="text" name="userId" id="userId" placeholder="用户id" />
+			<input type="text" name="userName" id="userName" placeholder="用户姓名" />
+			<input type="getUserInfo" value="查询" />
+			<input type="updataUser" value="修改" />
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	$("#getUserInfo").click(function(){
+		// 通过id查用户姓名
+		
+		var userId = $("#userId").val();
+		if(isNaN(userId)){
+			alert("请输入数字");
+			return;
+		}
+		
+		$.ajax({
+			url:"/getUserInfo",
+			type:'get',
+			dataType:'text',
+			data:{
+				"userId":userId
+			},
+			success:function(res){
+				console.info(res);
+			},
+			error:function(a,b){
+				console.info(a);
+			}
+		});
+	});
+</script>

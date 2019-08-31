@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试post请求</title>
+	</head>
+	<style type="text/css">
+		body{
+			text-align: center;
+		}
+	</style>
+	<body>
+		<form action="/getUserInfo" method="get">
+			<div>查找</div>
+			输入id: <input type="text" name="id" value="" />
+			<br><br>
+			<input type="submit" value="提交" />
+		</form>
+		<form action="/testPost" method="post">
+			<div>修改</div>
+			输入id: <input type="text" name="id" value="" />
+			<br><br>
+			新的姓名: <input type="text" name="name" value="" />
+			<br><br>
+			<input type="submit" value="修改" />
+		</form>
+	</body>
+</html>
