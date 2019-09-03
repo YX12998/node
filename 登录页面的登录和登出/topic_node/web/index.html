@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="web/jquery-2.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<!-- <form action="" method="post">
+			in
+		</form> -->
+		<form action="/" method="POST">
+			<input type="text" name="name" id="" value="" placeholder="" />
+			<input type="text" name="id" id="" value="" placeholder="" />
+			<input type="submit" value="post请求">
+		</form>
+
+		<form action="/file_upload" method="post" enctype="multipart/form-data">
+			<input type="file" name="image" size="50" />
+			<br />
+			<input type="submit" value="上传文件" />
+		</form>
+ <br>
+ 
+ <form>
+	 <input type="text" name="userId" id="uesrId" value="" placeholder="用户id"/>
+	 <input type="text" name="userName" id="userName" value="" placeholder="用户名">
+	 
+	 <input type="button" id="getUser" value="查询">
+	 <input type="button" id="postUser" value="修改">
+ </form>
+	</body>
+</html>
+
+<script type="text/javascript">
+	 // $(function(){
+		//  
+	 // })
+	 
+	$("#getUser").click(function(){
+		
+	// var userId=	document.getElementById("uesrId").value;
+	
+	 // console.info(q);
+		//通过id查询用户的名字
+		var userId = $("#uesrId").val();
+		// var userName = $("#userName").val();
+		// console.info(userName);
+		console.info(userId);
+		if(isNaN(userId)){
+			alert("请输入数字")
+			return;
+		}
+		$.ajax({
+			url: "/getUserInfo",
+			type:'get',
+			dataType:'json',
+			data: {
+				"userId":userId,
+				// "userName":userName,
+			},
+			success:function(res){
+				alert(165);
+				// console.info(res);
+				$("#userName").val(res.name);
+			},
+			error: function(a,b){
+				console.info(a);
+			}
+		})
+	});
+	
+	$("#postUser").click(function(){
+		alert(1);
+		var userId = $("#uesrId").val();
+		var userName = $("#userName").val();
+		// console.info(userName);
+		// console.info(userId);
+		$.ajax({
+			url: "/getUserInfo",
+			type:'post',
+			dataType:'json',
+			timeout:10000,
+			data: {
+				"userId":userId,
+				"userName":userName,
+			},
+			success:function(data){
+				
+				alert(data.info);
+				
+			},
+			error: function(a,b){
+				console.info(a);
+			}
+		})
+	})
+</script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="/web/jquery-2.js" type="text/javascript" charset="utf-8"> </script>
+		<title></title>
+	</head>
+	<body>
+		<h2>登陆成功</h2>
+		<form action="/logout" method="get">
+			<input type="button" value="注销" id="logout">
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	$.ajax({
+		async: false,
+		url: '/checkelogin',
+		type: 'get',
+		data: {},
+		dataType: 'json',
+		success: function(res) {
+			// alert(1);
+			if (!res.ok) {
+				console.info("ok")
+			} else {
+				console.info('no ok');
+				var toHome = window.confirm("您未登录,点击确认登录或点击注销,返回主页")
+				if (toHome) {
+					window.location = "/web/login.html";
+				} else {
+					window.location = "http://hao123.com";
+				}
+
+			}
+		},
+		error: function(a, b) { // a 报错的类型 b 报错的信息 
+			console.info(a);
+		}
+	});
+
+
+	$("#logout").click(function() {
+		// alert(1);
+		var q = $("#userName").val();
+		$.ajax({
+			url: "/logout",
+			type: 'post',
+			dataType: 'json',
+			success: function(res) {
+				window.location = '/';
+			},
+			error: function(a, b) {
+				alert("未登出成功")
+			}
+		})
+	})
+</script>

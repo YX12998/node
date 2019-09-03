@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="/web/jquery-2.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="/login" method="post">
+			<input type="text" name="userName" value="" id="userName">
+			<br>
+			<input type="password" name="userPassword" value="" id="userPassword">
+			<input type="button" value="登录" id="loginBt">
+
+		</form>
+		<form action="/logout" method="get">
+			<input type="button" value="注销" id="logout">
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function() {
+
+		$("#loginBt").click(function() {
+			var q = $("#userName").val();
+			var y = document.getElementById("userPassword").value;
+			console.info(q + " ----" + y);
+
+			// alert(1);
+			$.ajax({
+				url: "/login",
+				type: 'post',
+				dataType: 'json',
+				data: {
+					"userName": q,
+					"userPassword": y
+				},
+				success: function(res) {
+					if (res.ok) {
+						alert("登录成功");
+						// window.location = "/";
+						window.location = "/web/logcg.html";
+					} else {
+						alert("用户名密码不正确");
+						window.location = "/";
+					}
+					// window.location = "/web/logcg.html";
+				},
+				error: function(a, b) {
+					console.info(a);
+				}
+			})
+		})
+
+		/* $("#logout").click(function() {
+			// alert(2);
+			var q = $("#userName").val();
+			$.ajax({
+				url: "/login",
+				type: 'post',
+				dataType: 'json',
+				data: {
+					"userId": q,
+					// "userName":userName,
+				},
+				success: function(res) {
+					alert(1);
+				},
+				error: function(a, b) {
+					console.info(a);
+				}
+			})
+		}) */
+
+
+	})
+</script>
