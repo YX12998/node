@@ -1,0 +1,45 @@
+模块化起点
+
+--- 面向对象 --> 模块化
+
+1. 面向对象: 
+   --> 函数和对象 --> 构造器函数: --> 对象模板 --> 继承/扩展 --> js有继承吗? 无 --> 通过原型链替代继承 --> js继承
+   --> 严格模式 
+
+2. 什么是模块化?
+   --> 函数模块(全局, 命名空间, 污染) --> 对象化( 暴露成员 ) --> 立即执行函数( 自调用 ) -- 例子:boll模块: html/css/js -- 放置到任何地方
+   --> ( 可初始化, 具体行为, 可销毁 ) --> 新问题: 复用的问题 --> requirejs/AMD规范( require, define, declear, callback )
+
+3. node( 后台, 模块化, 一切皆模块 ) --> 模块的使用: var http = require("http") // 常用模块: http /fs /mysql /url /path /querystring /util /event /express( 替代server.js )
+   -- node复习
+
+   ----------------------------------
+ npm的使用--> server.js --- http模块, 数据库支持--mysql模块/npm indtall mysql -g // 回调函数? 单线程--回调a->回调b? -- 把b写到A里边, 
+ 事件-->event模块, --> event.EventEmitter---> on/emit ----> "topic"/(require)--eventName事件名,自定义的字符串,--遵守命名规则,1见名知意2不能用关键字,3,下划线拼接,前后缀
+	--buffer (二进制序列) ---> stream --> 抽象接口 --> 模块"fs"文件系统(文件file/目录path) --> rs读取流 = fs.createReadStream/ fs.createWriteStream
+	
+-----随手关门 --> 长连接, 数据库连接, 文件, 流, 监听,等, 不用就随手关掉.
+-----立规矩: 教师内不准玩游戏,除非是你自己编写的游戏,否则,无条件留级.
+-----简历-->小姑娘拖延改简历-->被骂-->"拖延,会让事情变得更加棘手"
+-----荣耀! --> 战马耕地 --> 谁是那头牛 --> 
+
+
+-----流.Pie()  stream事件-- on('data', callback) --on('end', callback)--
+	, http-request-respon-path-url --> 文件服务器(通过解析地址, 向respon pie了相应的内容,) 
+	-->文件系统fs, mkdir/递归增加recursive: true --readdir-->callback-->遍历文件列表forEach( function( file){...}) -->appendFile(追加写入)
+	---open/close 
+-----相对路径 --> ./  /	 ../  (上上层目录 .../?..../ ../../)
+-----意志力 -->越南小姑娘1.5m 正面发动的袭击,杀死了一个加拿大的保镖200斤,-->功夫,训练都是骗人的,在激起对方的求生意志之前,果断得手.
+-----以虞待不虞者胜.
+
+
+--> 启动一个服务, 将磁盘根目录下的web文件夹的所有的文件的名字都返回给前端页面( 不需要路由, 不解析请求, 直接返回文件列表)
+
+--> 异步请求 --> 早年间, 向服务器发请求, 都是用form -- 指向新页面(跳转/刷新) -- 异步请求, js原生xhr, --> ajax -- js异步请求技术
+
+--> 模块系统 - require, exports, --> express --> 路由/get -- request.query/post/ 静态资源 / 文件上传 / json / ajax配合
+
+ 流- 文件 - 目录 - http/文件服务器 - 模块系统 - 简介get/post - 路由 - express(接口设定)
+
+// express --> session --> login/logout --> express
+每个模块都有个exporse , exporse就是我们要返回的对象, 其成员属性就是要暴露的内容. exports.getResults = (){}
